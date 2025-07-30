@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit-Guinée - E-commerce</title>
+    <!-- Lien vers le fichier CSS externe -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+               <div class="logo">
+                    <img src="photo/Logo.png" alt="Mon Logo Digit-Guinée" style="height: 40px; width: auto; border-radius: 19px;">
+                    <span>Digit-Guinée</span>
+                </div>
+                <nav class="nav">
+                    <button class="nav-link active" onclick="naviguerVers('home')" data-view="home">
+                        <i class="fas fa-home"></i> Accueil
+                    </button>
+                    <button class="nav-link" onclick="naviguerVers('products')" data-view="products">
+                        <i class="fas fa-th-large"></i> Produits
+                    </button>
+                    <button class="nav-link" onclick="naviguerVers('cart')" data-view="cart">
+                        <i class="fas fa-shopping-cart"></i> Panier
+                        <span id="badge-panier" class="badge-panier hidden">0</span>
+                    </button>
+                </nav>
+                <div class="search-container" id="header-search-container">
+                    <input type="search" id="products-search-input" placeholder="Rechercher des produits...">
+                    <button id="products-search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav id="mobile-nav" class="mobile-nav">
+                <button class="nav-link" onclick="naviguerVers('home')" data-view="home">
+                    <i class="fas fa-home"></i> Accueil
+                </button>
+                <button class="nav-link" onclick="naviguerVers('products')" data-view="products">
+                    <i class="fas fa-th-large"></i> Produits
+                </button>
+                <button class="nav-link" onclick="naviguerVers('cart')" data-view="cart">
+                    <i class="fas fa-shopping-cart"></i> Panier
+                    <span id="badge-panier-mobile" class="badge-panier hidden">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Home View -->
+            <div id="home-view" class="view active">
+                <div class="hero">
+                    <h2>Bienvenue chez Digit-Guinée</h2>
+                    <p>La référence du shopping en ligne en Guinée ! Explorez un large choix de produits électroniques, de vêtements tendance et d’articles pour la maison, soigneusement sélectionnés pour vous. Bénéficiez de prix compétitifs, d’une livraison rapide partout en Guinée et d’un accompagnement client personnalisé. Faites vos achats en toute confiance et vivez une expérience unique avec Digit-Guinée.</p>
+                    <button class="btn" onclick="naviguerVers('products')">
+                        Découvrir nos produits
+                    </button>
+                </div>
+
+                <div class="categories-grid">
+                    <div class="category-card" onclick="filtrerEtNaviguerCategorie('electronique')">
+                        <i class="fas fa-laptop category-icon"></i>
+                        <h3>Électronique</h3>
+                        <p>Smartphones, pc et plus</p>
+                    </div>
+                    <div class="category-card" onclick="filtrerEtNaviguerCategorie('mode')">
+                        <i class="fas fa-tshirt category-icon"></i>
+                        <h3>Mode</h3>
+                        <p>Vêtements et accessoires</p>
+                    </div>
+                    <div class="category-card" onclick="filtrerEtNaviguerCategorie('maison')">
+                        <i class="fas fa-home category-icon"></i>
+                        <h3>Maison</h3>
+                        <p>Décoration et mobilier</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products View -->
+            <div id="products-view" class="view">
+                <div class="products-header">
+                    <h2>Nos Produits</h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" onclick="filtrerParCategorie('all')" data-category="all">Tous</button>
+                        <button class="filter-btn" onclick="filtrerParCategorie('electronique')" data-category="electronique">Électronique</button>
+                        <button class="filter-btn" onclick="filtrerParCategorie('mode')" data-category="mode">Mode</button>
+                        <button class="filter-btn" onclick="filtrerParCategorie('maison')" data-category="maison">Maison</button>
+                    </div>
+                </div>
+                <div id="products-grid" class="products-grid">
+                    <!-- Produitd serons insere ici -->
+                </div>
+            </div>
+
+            <!-- Cart View -->
+            <div id="panier-vue" class="view">
+                <h2>Mon Panier</h2>
+                
+                <div id="contenu-panier">
+                    <!-- Cart items will be inserted here -->
+                </div>
+                
+                <div id="panier-vide" class="empty-cart" style="display: none;">
+                    <i class="fas fa-shopping-cart empty-cart-icon"></i>
+                    <h3>Votre panier est vide</h3>
+                    <p>Découvrez nos produits et ajoutez-les à votre panier</p>
+                    <button class="btn" onclick="naviguerVers('products')">
+                        Voir les produits
+                    </button>
+                </div>
+
+                <div id="resume-panier" class="cart-summary" style="display: none;">
+                    <div class="summary-line">
+                        <span>Sous-total:</span>
+                        <span id="subtotal-amount">0 GNF</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Livraison:</span>
+                        <span id="shipping-cost" class="free-shipping">Gratuite</span>
+                    </div>
+                    <div class="summary-line total">
+                        <span>Total:</span>
+                        <span id="total-amount" class="amount">0 GNF</span>
+                    </div>
+                    <button class="btn-commander" id="btn-commander">Passer la commande</button>
+                    <button class="btn" id="btn-vider-panier" style="background-color: var(--error-color); margin-top: 0.5rem; width: 100%;">Vider le panier</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Foo ter -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                    <img src="photo/Logo.png" alt="Mon Logo Digit-Guinée" style="height: 40px; width: auto; border-radius: 19px;">
+                    <span>Digit-Guinée</span>
+            </div>
+            <p>© 2024 Digit-Guinée. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- La notification est maintenant complètement masquée par défaut et ne sera plus affichée par JS -->
+    <div id="notification-toast" class="notification"></div>
+
+    <!-- Lien vers le fichier JavaScript externe -->
+    <script src="script.js"></script>
+</body>
+</html>
