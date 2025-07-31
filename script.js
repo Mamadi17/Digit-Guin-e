@@ -91,6 +91,7 @@ const PRODUCTS_DATA = {
             id: 14, 
             name: "Sac", 
             prix: 200000, 
+            rating:3.5,
             category: "mode", 
             image: "photo/sac.png",
             description: "Sac a main de luxe"
