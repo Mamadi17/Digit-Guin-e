@@ -539,3 +539,5 @@ function showNotification(message, type = 'success') {
         notif.classList.remove('show');
     }, 2000);
 }
+// Met à jour l'année dans le copyright
+document.getElementById('current-year').textContent = new Date().getFullYear();
